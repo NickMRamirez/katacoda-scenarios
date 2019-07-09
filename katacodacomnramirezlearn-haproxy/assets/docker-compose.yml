@@ -6,3 +6,12 @@ services:
     image: jmalloc/echo-server
     ports:
     - "8080:8080"
+
+  haproxy:
+    image: haproxytech/haproxy-ubuntu:2.0
+    volumes:
+    - "./haproxy.cfg:/etc/haproxy/haproxy.cfg"
+    ports:
+    - "80:80"
+    depends_on:
+    - web1
