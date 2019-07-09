@@ -3,7 +3,7 @@
   "description": "Learn how to configure HAProxy with hands-on exercises.",
   "details": {
     "assets": {
-      "client": [
+      "host01": [
         {
           "file": "*", "target": "~/"
         }
@@ -32,7 +32,7 @@
     }
   },
   "files": [
-    "haproxy.cfg"
+    "~/haproxy.cfg"
   ],
   "environment": {
     "uilayout": "editor-terminal",
