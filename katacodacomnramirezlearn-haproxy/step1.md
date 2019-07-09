@@ -1,5 +1,3 @@
-# Listens, frontends, and backends
-
 An HAProxy configuration file consists primarily of only a handful of sections. These sections are:
 
 | Section  | Description                                                                 |   |   |   |

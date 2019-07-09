@@ -15,17 +15,21 @@
     },
     "steps": [
       {
-        "title": "Step 1",
+        "title": "Listens, frontends, and backends",
         "text": "step1.md",
         "code": "step1.sh"
       },
       {
-        "title": "Step 2",
+        "title": "The global section",
         "text": "step2.md"
       },
       {
-        "title": "Step 3",
+        "title": "The defaults section",
         "text": "step3.md"
+      },
+      {
+        "title": "The listen section",
+        "text": "step4.md"
       }
     ],
     "finish": {

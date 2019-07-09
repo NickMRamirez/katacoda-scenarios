@@ -1,5 +1,3 @@
-# The defaults section
-
 The `defaults` section sets various default values that will apply to the sections that follow. Choose settings that are common across the rest of the configuration so that you don't need to repeat them in each `listen`, `frontend`, and `backend` section. Each of these settings can be overridden, if needed, by specifying it again within a following section.
 
 In the *haproxy.cfg* file here, we've included the following settings:
