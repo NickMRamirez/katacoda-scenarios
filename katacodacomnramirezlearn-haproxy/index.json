@@ -5,7 +5,7 @@
     "assets": {
       "host01": [
         {
-          "file": "*", "target": "~/"
+          "file": "*", "target": "/root"
         }
       ]
     },
@@ -32,11 +32,11 @@
     }
   },
   "files": [
-    "~/haproxy.cfg"
+    "haproxy.cfg"
   ],
   "environment": {
     "uilayout": "editor-terminal",
-    "uieditorpath": "~/"
+    "uieditorpath": "/root"
   },
   "backend": {
     "imageid": "ubuntu"
