@@ -1,0 +1,40 @@
+{
+  "title": "Interactive HAProxy Tutorial",
+  "description": "Learn how to configure HAProxy with hands-on exercises.",
+  "details": {
+    "assets": {
+      "host01": [
+        {
+          "file": "*", "target": "/root"
+        }
+      ]
+    },
+    "intro": {
+      "text": "intro.md",
+      "courseData": "intro.sh"
+    },
+    "steps": [
+      {
+        "title": "Step 1",
+        "text": "step1.md"
+      },
+      {
+        "title": "Step 2",
+        "text": "step2.md"
+      },
+      {
+        "title": "Step 3",
+        "text": "step3.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "editor-terminal-split"
+  },
+  "backend": {
+    "imageid": "docker"
+  }
+}
