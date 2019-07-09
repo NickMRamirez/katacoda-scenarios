@@ -6,4 +6,4 @@ The `global` section sets process-level instructions for HAProxy. In this exampl
 docker-compose logs haproxy
 ```
 
-Try it out!
+Try it out! You should see the initial log message: *Proxy fe_main started*.
