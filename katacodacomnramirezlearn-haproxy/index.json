@@ -3,7 +3,7 @@
   "description": "Learn how to configure HAProxy with hands-on exercises.",
   "details": {
     "assets": {
-      "host01": [
+      "client": [
         {
           "file": "*", "target": "~/"
         }
