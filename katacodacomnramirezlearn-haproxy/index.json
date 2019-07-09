@@ -33,7 +33,7 @@
   },
   "environment": {
     "uilayout": "editor-terminal",
-    "uieditorpath": "/root/example",
+    "uieditorpath": "/root/example/1",
     "uisettings": "text",
     "showdashboard": true,
     "dashboards": [{"name": "Display 80", "port": 80}]
