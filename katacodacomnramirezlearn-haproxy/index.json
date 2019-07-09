@@ -39,6 +39,6 @@
     "uieditorpath": "~/"
   },
   "backend": {
-    "imageid": "docker"
+    "imageid": "ubuntu"
   }
 }
