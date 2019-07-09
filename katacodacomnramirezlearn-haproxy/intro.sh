@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd /root
+cd ~
 docker-compose up -d

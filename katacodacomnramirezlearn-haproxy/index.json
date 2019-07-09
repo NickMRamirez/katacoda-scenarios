@@ -5,7 +5,7 @@
     "assets": {
       "host01": [
         {
-          "file": "*", "target": "/root"
+          "file": "*", "target": "~/"
         }
       ]
     },
@@ -31,8 +31,12 @@
       "text": "finish.md"
     }
   },
+  "files": [
+    "haproxy.cfg"
+  ],
   "environment": {
-    "uilayout": "editor-terminal-split"
+    "uilayout": "editor-terminal",
+    "uieditorpath": "~/"
   },
   "backend": {
     "imageid": "docker"
