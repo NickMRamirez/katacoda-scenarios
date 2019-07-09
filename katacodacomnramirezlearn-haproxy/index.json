@@ -31,9 +31,6 @@
       "text": "finish.md"
     }
   },
-  "files": [
-    "haproxy.cfg"
-  ],
   "environment": {
     "uilayout": "editor-terminal",
     "uieditorpath": "/root",
