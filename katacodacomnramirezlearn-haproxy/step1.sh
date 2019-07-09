@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cd /root/example
+cd /root/example/
