@@ -19,7 +19,19 @@ backend webservers
 Then restart the Docker container:
 
 ```
+cd /root/example
 docker-compose restart haproxy
 ```
 
-Click the *Display 80* tab to see that the site still works.
+Click the *Display 80* tab to see that the site still works. You can also check the logs again to see that the *www* `frontend` and *webservers* `backend` were started:
+
+```
+docker-compose logs haproxy
+```
+
+You should see:
+
+```
+Proxy www started.
+Proxy webservers started.
+```
