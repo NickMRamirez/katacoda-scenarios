@@ -3,10 +3,10 @@ version: "3"
 services:
 
   web1:
-    image: jmalloc/echo-server
+    image: crccheck/hello-world
 
   web2:
-    image: jmalloc/echo-server
+    image: crccheck/hello-world
 
   haproxy:
     image: haproxytech/haproxy-ubuntu:2.0
@@ -14,5 +14,7 @@ services:
     - "./haproxy.cfg:/etc/haproxy/haproxy.cfg"
     ports:
     - "80:80"
+    - "9000:9000"
     depends_on:
     - web1
+    - web2
