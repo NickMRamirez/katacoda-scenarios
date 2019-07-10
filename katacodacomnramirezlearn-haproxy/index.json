@@ -6,9 +6,6 @@
       "host01": [
         {
           "file": "example/*", "target": "/root/example"
-        },
-        {
-          "file": "changes/*", "target": "/root/changes"
         }
       ]
     },
@@ -19,28 +16,23 @@
     "steps": [
       {
         "title": "Listens, frontends, and backends",
-        "text": "step1.md",
-        "code": "step1.sh"
+        "text": "step1.md"
       },
       {
         "title": "The global section",
-        "text": "step2.md",
-        "code": "step2.sh"
+        "text": "step2.md"
       },
       {
         "title": "The defaults section",
-        "text": "step3.md",
-        "code": "step3.sh"
+        "text": "step3.md"
       },
       {
         "title": "The listen section",
-        "text": "step4.md",
-        "code": "step4.sh"
+        "text": "step4.md"
       },
       {
         "title": "The frontend section",
-        "text": "step5.md",
-        "code": "step5.sh"
+        "text": "step5.md"
       }
     ],
     "finish": {
