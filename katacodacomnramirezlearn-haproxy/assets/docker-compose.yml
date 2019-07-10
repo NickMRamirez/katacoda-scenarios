@@ -4,13 +4,9 @@ services:
 
   web1:
     image: jmalloc/echo-server
-    ports:
-    - "8080:8080"
 
   web2:
     image: jmalloc/echo-server
-    ports:
-    - "8080:8080"
 
   haproxy:
     image: haproxytech/haproxy-ubuntu:2.0
