@@ -1,6 +1,6 @@
 # Intro to HAProxy Concepts
 
-HAProxy is built from the ground up to be a **load balancer**. That focus guides how network concepts are represented within its *haproxy.cfg* configuration file. 
+HAProxy is built from the ground up to be a **load balancer**. That singular focus guides how concepts are represented within its *haproxy.cfg* configuration file. 
 
 A load balancer: 
 

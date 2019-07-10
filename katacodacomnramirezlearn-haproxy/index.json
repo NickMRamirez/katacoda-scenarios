@@ -5,7 +5,10 @@
     "assets": {
       "host01": [
         {
-          "file": "*", "target": "/root/example"
+          "file": "example/*", "target": "/root/example"
+        },
+        {
+          "file": "changes/*", "target": "/root/changes"
         }
       ]
     },
@@ -30,6 +33,11 @@
       {
         "title": "The listen section",
         "text": "step4.md"
+      },
+      {
+        "title": "The frontend section",
+        "text": "step5.md",
+        "code": "step5.sh"
       }
     ],
     "finish": {
