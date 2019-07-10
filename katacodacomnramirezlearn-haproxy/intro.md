@@ -10,3 +10,5 @@ A load balancer:
 
 By hiding the details of the backend servers from the client, HAProxy allows you to scale out without disruption. A load balancer is a proxy, or middleman, between the client and servers.
 
+In this scenario, you will learn about the major sections of an HAProxy configuration: the `global`, `defaults`, `listen`, `frontend`, and `backend` sections.
+
