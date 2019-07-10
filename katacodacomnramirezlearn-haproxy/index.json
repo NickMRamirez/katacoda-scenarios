@@ -24,15 +24,18 @@
       },
       {
         "title": "The global section",
-        "text": "step2.md"
+        "text": "step2.md",
+        "code": "step2.sh"
       },
       {
         "title": "The defaults section",
-        "text": "step3.md"
+        "text": "step3.md",
+        "code": "step3.sh"
       },
       {
         "title": "The listen section",
-        "text": "step4.md"
+        "text": "step4.md",
+        "code": "step4.sh"
       },
       {
         "title": "The frontend section",
