@@ -53,3 +53,33 @@ Make a few requests to the [website](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HO
 ```
 docker-compose logs haproxy
 ```{{execute}}
+
+You should see in the logs that only *web1* is being used:
+
+```
+www webservers/web1 0/0/0/1/1 200 ... "GET / HTTP/1.1"
+www webservers/web1 0/0/0/1/1 200 ... "GET / HTTP/1.1"
+```
+
+If you were to then change `balance` back to *roundrobin* (set it explicitly this time):
+
+<pre class="file" data-target="clipboard">
+backend webservers
+    balance roundrobin
+    server web1 web1:8000 check
+    server web2 web2:8000 check
+</pre>
+
+Restart the container again:
+
+```
+cd /root/example
+docker-compose restart haproxy
+```{{execute}}
+
+And make a few more requests to the [website](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/). You would see that the logs show both *web1* and *web2* being used:
+
+```
+www webservers/web1 0/0/0/1/1 200 ... "GET / HTTP/1.1"
+www webservers/web2 0/0/0/1/1 200 ... "GET / HTTP/1.1"
+```

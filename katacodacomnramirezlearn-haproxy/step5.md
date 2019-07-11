@@ -23,7 +23,7 @@ cd /root/example
 docker-compose restart haproxy
 ```{{execute}}
 
-Click the *Display 80* tab to see that the site still works. You can also check the logs again to see that the *www* `frontend` and *webservers* `backend` were started:
+[View the site on port 80](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/) to see that it still works. You can also check the logs again to see that the *www* `frontend` and *webservers* `backend` were started:
 
 ```
 docker-compose logs haproxy
