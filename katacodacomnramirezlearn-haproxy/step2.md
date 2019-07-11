@@ -8,7 +8,11 @@ In the *haproxy.cfg* file, the `global` section sets process-level instructions 
 | `ssl-default-bind-ciphers` | Lists SSL and TLS ciphers to use by default.                                                                                                 |
 | `ssl-default-bind-options` | Lists SSL and TLS options, such as `ssl-min-ver` to disable support for older protocols.                                                     |
 
-For this tutorial, HAProxy is running inside of a Docker container. The `log` directive sends messages to standard output. So, you can view the HAProxy logs by entering the following command into the terminal window:
+For this tutorial, HAProxy is running inside of a Docker container. The `log` directive sends messages to standard output.
+
+## Try it out
+
+You can view the HAProxy logs by entering the following command into the terminal window:
 
 ```
 cd /root/example
