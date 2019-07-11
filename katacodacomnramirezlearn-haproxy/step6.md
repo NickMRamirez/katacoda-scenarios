@@ -15,7 +15,7 @@ If you wanted to send all traffic by default to the *webservers* `backend`, but 
 
 Change the *haproxy.cfg* file so that the `frontend` and `backend` sections look like this:
 
-```
+<pre class="file" data-target="clipboard">
 frontend www 
     bind :80
     use_backend static_resources if { path_end .png }
@@ -27,13 +27,13 @@ backend webservers
 
 backend static_resources
     server static1 static1:8080 check
-```
+</pre>
 
 Then restart the HAProxy Docker container:
 
 ```
 docker-compose restart haproxy
-```
+```{{execute}}
 
 Then you can access a PNG image via the load balancer at https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/cat.png.
 
@@ -41,7 +41,7 @@ View the HAProxy logs to see that the request for the image was relayed to the *
 
 ```
 docker-compose logs haproxy
-```
+```{{execute}}
 
 You should see that the request was routes to the *static_resources* `backend`:
 

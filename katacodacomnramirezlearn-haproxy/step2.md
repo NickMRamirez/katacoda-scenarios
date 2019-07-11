@@ -25,6 +25,6 @@ You can also access the HAProxy Runtime API, which is set to listen on port 9000
 
 ```
 echo "show info" | nc localhost 9000
-```
+```{{execute}}
 
 You will see a list of properties, such as the version of HAProxy and how many threads it is utilizing.

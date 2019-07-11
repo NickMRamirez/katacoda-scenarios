@@ -6,7 +6,7 @@ A `frontend` covers the client-facing duties of a `listen` section, while a `bac
 
 Update the *haproxy.cfg* file so that the `listen` section is replaced with the following (*changes are saved automatically*):
 
-```
+<pre class="file" data-target="clipboard">
 frontend www 
     bind :80
     default_backend webservers
@@ -14,20 +14,20 @@ frontend www
 backend webservers
     server web1 web1:8000 check
     server web2 web2:8000 check
-```
+</pre>
 
 Then restart the Docker container:
 
 ```
 cd /root/example
 docker-compose restart haproxy
-```
+```{{execute}}
 
 Click the *Display 80* tab to see that the site still works. You can also check the logs again to see that the *www* `frontend` and *webservers* `backend` were started:
 
 ```
 docker-compose logs haproxy
-```
+```{{execute}}
 
 You should see:
 
