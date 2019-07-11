@@ -50,6 +50,10 @@
       {
         "title": "The balance directive (cont.)",
         "text": "step9.md"
+      },
+      {
+        "title": "Server weights",
+        "text": "step10.md"
       }
     ],
     "finish": {
