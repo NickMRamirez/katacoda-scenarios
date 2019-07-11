@@ -35,7 +35,7 @@ Then restart the HAProxy Docker container:
 docker-compose restart haproxy
 ```{{execute}}
 
-After the container restart, you can [request an image from the website](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/cat.png).
+After the container restarts, you can [request an image from the website](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/cat.png).
 
 View the HAProxy logs to see that the request for the image was relayed to the *static_resources* backend. 
 

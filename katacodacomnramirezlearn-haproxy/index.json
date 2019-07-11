@@ -42,6 +42,10 @@
       {
         "title": "The bind directive",
         "text": "step7.md"
+      },
+      {
+        "title": "The balance directive",
+        "text": "step8.md"
       }
     ],
     "finish": {
