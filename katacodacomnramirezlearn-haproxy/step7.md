@@ -75,3 +75,14 @@ frontend www
     use_backend static_resources if { path_end .png }
     default_backend webservers
 </pre>
+
+Restart the Docker container:
+
+```
+docker-compose restart haproxy
+```{{execute}}
+
+You can then access the site on either port 80 or 81:
+
+* https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/
+* https://[[HOST_SUBDOMAIN]]-81-[[KATACODA_HOST]].environments.katacoda.com/
