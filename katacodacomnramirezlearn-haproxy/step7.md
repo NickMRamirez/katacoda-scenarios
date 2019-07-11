@@ -46,7 +46,7 @@ frontend www
    default_backend webservers
 ```
 
-It's perfectly valid to add multiple `bind` lines within the same `frontend` or `listen` in order to listen on multiple IP addresses. Although, you can also list the addresses one after another and separate them with commas, as shown:
+It's perfectly valid to add multiple `bind` lines within the same `frontend` or `listen` in order to listen on multiple IP addresses. You can also list the addresses one after another and separate them with commas, as shown:
 
 ```
 frontend www
@@ -63,3 +63,15 @@ frontend www
 ```
 
 Be careful not to bind to more ports than you need, since each configured port consumes a socket on the host and sockets are needed to accept incoming connections and also initiate connections to backend servers.
+
+## Try it out
+
+Add another `bind` directive to the `frontend` section so that the proxy listens on both ports 80 and 81:
+
+<pre class="file" data-target="clipboard">
+frontend www 
+    bind :80
+    bind :81
+    use_backend static_resources if { path_end .png }
+    default_backend webservers
+</pre>

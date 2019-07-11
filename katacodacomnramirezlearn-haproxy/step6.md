@@ -43,7 +43,7 @@ View the HAProxy logs to see that the request for the image was relayed to the *
 docker-compose logs haproxy
 ```{{execute}}
 
-You should see that the request was routes to the *static_resources* `backend`:
+You should see that the request was routed to the *static_resources* `backend`:
 
 ```
 www static_resources/static1 0/0/0/0/1 200 ... "GET /cat.png HTTP/1.1"
