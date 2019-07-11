@@ -6,15 +6,13 @@
       "host01": [
         {
           "file": "example/*", "target": "/root/example/"
-        },
-        {
-          "file": "cat.png", "target": "/root/example/cat.png"
         }
       ]
     },
     "intro": {
       "text": "intro.md",
-      "code": "intro.sh"
+      "courseData": "intro-coursedata.sh",
+      "code": "intro-code.sh"
     },
     "steps": [
       {
