@@ -37,8 +37,8 @@ frontend www
 
 backend webservers
     balance first
-    server web1 web1:8000 check
-    server web2 web2:8000 check
+    server web1 web1:8000 check maxconn 30
+    server web2 web2:8000 check maxconn 30
 </pre>
 
 Restart the Docker container:
@@ -57,8 +57,8 @@ docker-compose logs haproxy
 You should see in the logs that only *web1* is being used:
 
 ```
-www webservers/web1 0/0/0/1/1 200 ... "GET / HTTP/1.1"
-www webservers/web1 0/0/0/1/1 200 ... "GET / HTTP/1.1"
+www webservers/web1 0/0/0/0/0 200 ... "GET / HTTP/1.1"
+www webservers/web1 0/0/0/0/0 200 ... "GET / HTTP/1.1"
 ```
 
 If you were to then change `balance` back to *roundrobin* (set it explicitly this time):
