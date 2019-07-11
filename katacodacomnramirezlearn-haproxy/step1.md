@@ -1,13 +1,9 @@
-An HAProxy configuration file, which is typically found at **/etc/haproxy/haproxy.cfg** consists primarily of only a handful of sections. These sections are:
+HAProxy is built from the ground up to be a **load balancer**. That singular focus guides how concepts are represented within its *haproxy.cfg* configuration file. 
 
-| Section  | Description                                                                 |   |   |   |
-|----------|-----------------------------------------------------------------------------|---|---|---|
-| `global`   | Sets process-level instructions for HAProxy                                 |   |   |   |
-| `defaults` | Sets default parameters for all other sections following its declaration    |   |   |   |
-| `listen`   |  Defines both the cluster of servers and the listener that receives traffic |   |   |   |
-| `frontend` | Defines the listener that receives traffic                                  |   |   |   |
-| `backend`  | Defines the cluster of servers                                              |   |   |   |
+A load balancer: 
 
-These simple building blocks allow for clear, intuitive configurations that can scale to handle a great deal of traffic. Advanced techniques, including redirecting requests, filtering out malicious users, and altering messages as they pass through, fit within this framework.
+* listens at an address and receives incoming traffic from clients
+* manages a cluster of servers to which it passes the request
+* allows you to scale your server capacity, without requiring the client to have knowledge of the backend servers
 
-Open the *haproxy.cfg* file to the right to see an example HAProxy configuration.
+By hiding the details of the backend servers from clients, HAProxy allows you to scale out servers without disruption. A load balancer is a proxy, or middleman, between the client and servers.

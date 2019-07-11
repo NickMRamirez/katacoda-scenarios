@@ -1,50 +1,37 @@
-Splitting your configuration up into `frontend` and `backend` sections is advantageous when you want to introduce more complex routing behavior. In our current example, the `frontend` relays all traffic to the `backend` with the name *webservers* by looking at the `default_backend` directive. If such a `backend` isn't found, HAProxy will fail to load the new configuration and give an error such as:
+If you require more complex routing behavior, such as the ability to send traffic to different clusters of servers depending on a condition, then it's better to split a `listen` section into two parts: a client-facing `frontend` and one or more `backend` sections that contain servers.
 
-```
-Proxy 'www': unable to find required default_backend: 'webservers'.
-```
-
-Let's introduce some more advanced routing logic.
-
-If you wanted to send all traffic by default to the *webservers* `backend`, but all requests for PNG files to a `backend` named *static_resources*, then you would do these steps:
-
-* Add a new `backend` section named *static_resources*
-* Add a `use_backend` directive to the `frontend` with an `if` statement that says when that `backend` should be used
+A `frontend` covers the client-facing duties of a `listen` section, while a `backend` covers the server pool duties. You could switch the order of these sections, so that the `backend` is defined first, if you wished. HAProxy is smart enough to parse them either way.
 
 ## Try it out
 
-Change the *haproxy.cfg* file so that the `frontend` and `backend` sections look like this:
+Update the *haproxy.cfg* file so that the `listen` section is replaced with the following (*changes are saved automatically*):
 
 <pre class="file" data-target="clipboard">
 frontend www 
     bind :80
-    use_backend static_resources if { path_end .png }
     default_backend webservers
 
 backend webservers
     server web1 web1:8000 check
     server web2 web2:8000 check
-
-backend static_resources
-    server static1 static1:8080 check
 </pre>
 
-Then restart the HAProxy Docker container:
+Then restart the Docker container:
 
 ```
+cd /root/example
 docker-compose restart haproxy
 ```{{execute}}
 
-After the container restarts, you can [request an image from the website](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/cat.png).
-
-View the HAProxy logs to see that the request for the image was relayed to the *static_resources* backend. 
+[View the site on port 80](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/) to see that it still works. You can also check the logs again to see that the *www* `frontend` and *webservers* `backend` were started:
 
 ```
 docker-compose logs haproxy
 ```{{execute}}
 
-You should see that the request was routed to the *static_resources* `backend`:
+You should see:
 
 ```
-www static_resources/static1 0/0/0/0/1 200 ... "GET /cat.png HTTP/1.1"
+Proxy www started.
+Proxy webservers started.
 ```

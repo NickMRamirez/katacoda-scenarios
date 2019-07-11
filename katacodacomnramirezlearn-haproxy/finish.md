@@ -1,4 +1,4 @@
-This concludes this tutorial! You now have an understanding of the major parts of an HAProxy configuration file:
+You now have an understanding of the major parts of an HAProxy configuration file:
 
 | Section  | Description                                                                   |   |   |   |
 |----------|-------------------------------------------------------------------------------|---|---|---|

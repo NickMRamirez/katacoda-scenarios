@@ -1,15 +1,30 @@
-The `defaults` section sets various default values that will apply to the sections that follow. Choose settings that are common across the rest of the configuration so that you don't need to repeat them in each `listen`, `frontend`, and `backend`. Each of these settings can be overridden, if needed, by specifying it again within a following section.
+In the *haproxy.cfg* file, the `global` section sets process-level instructions for HAProxy. For this example, that includes the following settings:
 
-In the *haproxy.cfg* file here, we've included the following settings:
+| Setting                  | Description                                                                                                                                  |
+|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| `maxconn`                  | Limits the number of connections HAProxy will accept, protecting the load balancer from running out of memory.                               |
+| `log`                      | Tells HAProxy where to send its log messages.                                                                                                |
+| `stats socket`             | Enables the HAProxy Runtime API, which can be used to disable servers and health checks, changing server weights, and other dynamic changes. |
+| `ssl-default-bind-ciphers` | Lists SSL and TLS ciphers to use by default.                                                                                                 |
+| `ssl-default-bind-options` | Lists SSL and TLS options, such as `ssl-min-ver` to disable support for older protocols.                                                     |
 
-| Setting             | Description                                                                                                                                     |   |   |   |
-|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|---|---|---|
-| `mode http`         | Defines whether HAProxy operates as a TCP proxy or if it's able to inspect higher-level HTTP messages. It can be set to either `tcp` or `http`. |   |   |   |
-| `log global`        | Instructs HAProxy to use the `log` directive from the `global` section.                                                                         |   |   |   |
-| `option httplog`    |  Tells HAProxy to log more verbose messages that are helpful for HTTP traffic.                                                                  |   |   |   |
-| `option forwardfor` | Records the client's source IP address and places it into an X-Forwarded-For header.                                                            |   |   |   |
-| `timeout connect`   | Defines how long to wait for HAProxy to establish a connection to a backend server.                                                             |   |   |   |
-| `timeout client`    | Defines how long to wait for the client to send data.                                                                                           |   |   |   |
-| `timeout server`    | Defines how long to wait for the server to send data.        
+For this tutorial, HAProxy is running inside of a Docker container. The `log` directive sends messages to standard output.
 
-The `mode` is particularly important. It configures HAProxy to be a TCP (Layer 4) or HTTP (Layer 7) load balancer. A TCP load balancer proxies requests without knowledge of the higher-level application data. It only sees the data as streams of bits that need to be passed back and forth. An HTTP load balancer can inspect HTTP messages and modify them en route.
+## Try it out
+
+You can view the HAProxy logs by entering the following command into the terminal window:
+
+```
+cd /root/example
+docker-compose logs haproxy
+```{{execute}}
+
+Try it out. You should see the initial log message: *Proxy www started*.
+
+You can also access the HAProxy Runtime API, which is set to listen on port 9000. The docker container exposes that port, so use the following command to see information about the running HAProxy process:
+
+```
+echo "show info" | nc localhost 9000
+```{{execute}}
+
+You will see a list of properties, such as the version of HAProxy and how many threads it is utilizing.

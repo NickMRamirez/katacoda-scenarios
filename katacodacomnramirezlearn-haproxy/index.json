@@ -16,44 +16,48 @@
     },
     "steps": [
       {
-        "title": "Listens, frontends, and backends",
+        "title": "Load balancer",
         "text": "step1.md"
       },
       {
-        "title": "The global section",
+        "title": "Listens, frontends, and backends",
         "text": "step2.md"
       },
       {
-        "title": "The defaults section",
+        "title": "The global section",
         "text": "step3.md"
       },
       {
-        "title": "The listen section",
+        "title": "The defaults section",
         "text": "step4.md"
       },
       {
-        "title": "Frontends and backends",
+        "title": "The listen section",
         "text": "step5.md"
       },
       {
-        "title": "Advanced routing",
+        "title": "Frontends and backends",
         "text": "step6.md"
       },
       {
-        "title": "The bind directive",
+        "title": "Advanced routing",
         "text": "step7.md"
       },
       {
-        "title": "The balance directive",
+        "title": "The bind directive",
         "text": "step8.md"
       },
       {
-        "title": "The balance directive (cont.)",
+        "title": "The balance directive",
         "text": "step9.md"
       },
       {
-        "title": "Server weights",
+        "title": "The balance directive (cont.)",
         "text": "step10.md"
+      },
+      {
+        "title": "Server weights",
+        "text": "step11.md"
       }
     ],
     "finish": {

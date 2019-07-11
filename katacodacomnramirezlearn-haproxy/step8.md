@@ -1,85 +1,88 @@
-A `backend` or `listen` section defines a pool of servers that share the responsibility of handling incoming requests. In the following example, HAProxy relays the requests to one of the two servers:
+A `frontend` or `listen` section creates the client-facing side of a proxy. Adding a `bind` directive begins the proxy listening on a particular IP address and port. Consider the following example:
 
 ```
-backend webservers
-    server web1 web1:8000 check
-    server web2 web2:8000 check
+frontend www
+   bind :80
+   default_backend webservers
 ```
 
-The method that HAProxy uses when choosing the server is its *load-balancing algorithm*. It's customizable.
+This proxy listens for incoming connections on all IPv4 addresses assigned to the host at port 80. It uses INADDR_ANY behind the scenes, meaning it binds to all available interfaces.
 
-The algorithm is set with the `balance` directive. When `balance` is not set, as in this example, it defaults to *roundrobin*. The *roundrobin* algorithm is often used when load balancing services that have fairly quick, uniform response times such as with web applications. With *roundrobin*, each server is used in turn, starting with the first one listed in the configuration. 
+In order to bind to a specific address, you would add it before the port, as shown:
+
+```
+frontend www
+   bind 172.17.0.13:80
+   default_backend webservers
+```
+
+To listen for connections on all IPv6 addresses assigned to the host, prefix the port with two colons (e.g. :::80):
+
+```
+frontend www
+   bind :80   
+   bind :::80
+   default_backend webservers
+```
+
+In this case, there are two bind lines: 
+
+* one that listens on all IPv4 addresses
+* one that listens on all IPv6 addresses
+
+You can also use the `v4v6` argument with a single IPv6 `bind` line to bind to all IPv4 and IPv6 addresses:
+
+```
+frontend www
+   bind :::80 v4v6
+   default_backend webservers
+```
+
+Or, you can bind to a specific IPv6 address, as shown in this example:
+
+```
+frontend www 
+   bind fd12:3456:7890:abcd::14:80
+   default_backend webservers
+```
+
+It's perfectly valid to add multiple `bind` lines within the same `frontend` or `listen` in order to listen on multiple IP addresses. You can also list the addresses one after another and separate them with commas, as shown:
+
+```
+frontend www
+   bind 172.17.0.13:80,172.17.0.14:80
+   default_backend webservers
+```
+
+Or, add a range of ports on which to listen. In the following example, HAProxy binds to all ports in the range of 8000 to 8020 for the given IP address.
+
+```
+frontend www
+   bind 172.17.0.13:8000-8020
+   default_backend webservers
+```
+
+Be careful not to bind to more ports than you need, since each configured port consumes a socket on the host and sockets are needed to accept incoming connections and also initiate connections to backend servers.
 
 ## Try it out
 
-You can set the algorithm explicitly by adding a `balance` directive. Change the *haproxy.cfg* file so that it uses `balance first`:
+Add another `bind` directive to the `frontend` section so that the proxy listens on both ports 80 and 81:
 
-<pre class="file" data-filename="haproxy.cfg" data-target="replace">
-global
-    maxconn 50000
-    log stdout local0
-    stats socket :9000 mode 660 level admin
-    ssl-default-bind-ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256
-    ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
-
-defaults
-    mode http
-    log global
-    option httplog
-    option forwardfor
-    timeout connect 5s
-    timeout client 5s
-    timeout server 5s
-
+<pre class="file" data-target="clipboard">
 frontend www 
     bind :80
+    bind :81
+    use_backend static_resources if { path_end .png }
     default_backend webservers
-
-backend webservers
-    balance first
-    server web1 web1:8000 check maxconn 30
-    server web2 web2:8000 check maxconn 30
 </pre>
 
 Restart the Docker container:
 
 ```
-cd /root/example
 docker-compose restart haproxy
 ```{{execute}}
 
-Make a few requests to the [website](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/) and then check the HAProxy logs to see that only *web1* (the *first* server) is being used:
+You can then access the site on either port 80 or 81:
 
-```
-docker-compose logs haproxy
-```{{execute}}
-
-You should see in the logs that only *web1* is being used:
-
-```
-www webservers/web1 0/0/0/0/0 200 ... "GET / HTTP/1.1"
-www webservers/web1 0/0/0/0/0 200 ... "GET / HTTP/1.1"
-```
-
-If you were to then change `balance` back to *roundrobin* (set it explicitly this time):
-
-<pre class="file" data-target="clipboard">
-backend webservers
-    balance roundrobin
-    server web1 web1:8000 check
-    server web2 web2:8000 check
-</pre>
-
-Restart the container again:
-
-```
-cd /root/example
-docker-compose restart haproxy
-```{{execute}}
-
-And make a few more requests to the [website](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/). You would see that the logs show both *web1* and *web2* being used:
-
-```
-www webservers/web1 0/0/0/1/1 200 ... "GET / HTTP/1.1"
-www webservers/web2 0/0/0/1/1 200 ... "GET / HTTP/1.1"
-```
+* Click here to [view the site on port 80](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/)
+* Click here to [view the site on port 81](https://[[HOST_SUBDOMAIN]]-81-[[KATACODA_HOST]].environments.katacoda.com/)

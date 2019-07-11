@@ -1,88 +1,50 @@
-A `frontend` or `listen` section creates the client-facing side of a proxy. Adding a `bind` directive begins the proxy listening on a particular IP address and port. Consider the following example:
+Splitting your configuration up into `frontend` and `backend` sections is advantageous when you want to introduce more complex routing behavior. In our current example, the `frontend` relays all traffic to the `backend` with the name *webservers* by looking at the `default_backend` directive. If such a `backend` isn't found, HAProxy will fail to load the new configuration and give an error such as:
 
 ```
-frontend www
-   bind :80
-   default_backend webservers
+Proxy 'www': unable to find required default_backend: 'webservers'.
 ```
 
-This proxy listens for incoming connections on all IPv4 addresses assigned to the host at port 80. It uses INADDR_ANY behind the scenes, meaning it binds to all available interfaces.
+Let's introduce some more advanced routing logic.
 
-In order to bind to a specific address, you would add it before the port, as shown:
+If you wanted to send all traffic by default to the *webservers* `backend`, but all requests for PNG files to a `backend` named *static_resources*, then you would do these steps:
 
-```
-frontend www
-   bind 172.17.0.13:80
-   default_backend webservers
-```
-
-To listen for connections on all IPv6 addresses assigned to the host, prefix the port with two colons (e.g. :::80):
-
-```
-frontend www
-   bind :80   
-   bind :::80
-   default_backend webservers
-```
-
-In this case, there are two bind lines: 
-
-* one that listens on all IPv4 addresses
-* one that listens on all IPv6 addresses
-
-You can also use the `v4v6` argument with a single IPv6 `bind` line to bind to all IPv4 and IPv6 addresses:
-
-```
-frontend www
-   bind :::80 v4v6
-   default_backend webservers
-```
-
-Or, you can bind to a specific IPv6 address, as shown in this example:
-
-```
-frontend www 
-   bind fd12:3456:7890:abcd::14:80
-   default_backend webservers
-```
-
-It's perfectly valid to add multiple `bind` lines within the same `frontend` or `listen` in order to listen on multiple IP addresses. You can also list the addresses one after another and separate them with commas, as shown:
-
-```
-frontend www
-   bind 172.17.0.13:80,172.17.0.14:80
-   default_backend webservers
-```
-
-Or, add a range of ports on which to listen. In the following example, HAProxy binds to all ports in the range of 8000 to 8020 for the given IP address.
-
-```
-frontend www
-   bind 172.17.0.13:8000-8020
-   default_backend webservers
-```
-
-Be careful not to bind to more ports than you need, since each configured port consumes a socket on the host and sockets are needed to accept incoming connections and also initiate connections to backend servers.
+* Add a new `backend` section named *static_resources*
+* Add a `use_backend` directive to the `frontend` with an `if` statement that says when that `backend` should be used
 
 ## Try it out
 
-Add another `bind` directive to the `frontend` section so that the proxy listens on both ports 80 and 81:
+Change the *haproxy.cfg* file so that the `frontend` and `backend` sections look like this:
 
 <pre class="file" data-target="clipboard">
 frontend www 
     bind :80
-    bind :81
     use_backend static_resources if { path_end .png }
     default_backend webservers
+
+backend webservers
+    server web1 web1:8000 check
+    server web2 web2:8000 check
+
+backend static_resources
+    server static1 static1:8080 check
 </pre>
 
-Restart the Docker container:
+Then restart the HAProxy Docker container:
 
 ```
 docker-compose restart haproxy
 ```{{execute}}
 
-You can then access the site on either port 80 or 81:
+After the container restarts, you can [request an image from the website](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/cat.png).
 
-* Click here to [view the site on port 80](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/)
-* Click here to [view the site on port 81](https://[[HOST_SUBDOMAIN]]-81-[[KATACODA_HOST]].environments.katacoda.com/)
+View the HAProxy logs to see that the request for the image was relayed to the *static_resources* backend. 
+
+```
+docker-compose logs haproxy
+```{{execute}}
+
+You should see that the request was routed to the *static_resources* `backend`:
+
+```
+www static_resources/static1 0/0/0/0/1 200 ... "GET /cat.png HTTP/1.1"
+```
