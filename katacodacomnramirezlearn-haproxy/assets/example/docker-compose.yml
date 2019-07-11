@@ -11,7 +11,7 @@ services:
   static1:
     image: halverneus/static-file-server
     volumes:
-    - "./static_files:/web"
+    - "./cat.jpg:/web/cat.jpg"
 
   haproxy:
     image: haproxytech/haproxy-ubuntu:2.0
