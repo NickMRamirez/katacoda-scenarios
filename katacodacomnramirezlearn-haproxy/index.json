@@ -5,7 +5,7 @@
     "assets": {
       "host01": [
         {
-          "file": "example/*", "target": "/root/example"
+          "file": "example/*", "target": "/root/example/"
         }
       ]
     },
@@ -45,7 +45,7 @@
   },
   "environment": {
     "uilayout": "editor-terminal",
-    "uieditorpath": "/root/example",
+    "uieditorpath": "/root/example/",
     "uisettings": "text",
     "showdashboard": true,
     "dashboards": [{"name": "Display 80", "port": 80}]
