@@ -27,6 +27,22 @@ backend static_resources
     server static1 static1:8080 check
 ```
 
+Then restart the HAProxy Docker container:
+
+```
+docker-compose restart haproxy
+```
+
 Then you can access a PNG image via the load balancer at https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/cat.png.
 
-View the HAProxy logs to see that the request for the image was relayed to the *static_resources* backend. You should see:
+View the HAProxy logs to see that the request for the image was relayed to the *static_resources* backend. 
+
+```
+docker-compose logs haproxy
+```
+
+You should see that the request was routes to the *static_resources* `backend`:
+
+```
+www static_resources/static1 0/0/0/0/1 200 ... "GET /cat.png HTTP/1.1"
+```
