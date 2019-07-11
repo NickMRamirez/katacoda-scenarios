@@ -15,4 +15,4 @@ You may be curious about the label *www* on the `listen` line. Each `listen` mus
 
 ## Try it out
 
-Click the *Display 80* tab to see it in action. This makes a request to HAProxy at port 80. HAProxy then relays the request to a backend server that is listening at port 8000, which returns a response to HAProxy.
+Click the *Display 80* tab to see it in action. This makes a request to HAProxy at port 80. HAProxy then relays the request to a backend server that is listening at port 8000, which returns a response to HAProxy. HAProxy then returns it to the client (the browser).

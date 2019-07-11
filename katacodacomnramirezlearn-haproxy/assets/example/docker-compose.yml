@@ -8,6 +8,11 @@ services:
   web2:
     image: crccheck/hello-world
 
+  static1:
+    image: halverneus/static-file-server
+    volumes:
+    - "./static_files:/web"
+
   haproxy:
     image: haproxytech/haproxy-ubuntu:2.0
     volumes:
@@ -18,3 +23,4 @@ services:
     depends_on:
     - web1
     - web2
+    - static1

@@ -4,7 +4,7 @@ A `frontend` covers the client-facing duties of a `listen` section, while a `bac
 
 ## Try it out
 
-Update the *haproxy.cfg* file so that the `listen` section is replaced with the following:
+Update the *haproxy.cfg* file so that the `listen` section is replaced with the following (*changes are saved automatically*):
 
 ```
 frontend www 

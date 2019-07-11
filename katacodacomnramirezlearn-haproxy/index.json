@@ -33,6 +33,10 @@
       {
         "title": "Frontends and backends",
         "text": "step5.md"
+      },
+      {
+        "title": "Advanced routing",
+        "text": "step6.md"
       }
     ],
     "finish": {
