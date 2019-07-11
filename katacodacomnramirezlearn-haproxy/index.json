@@ -52,8 +52,11 @@
     "uilayout": "editor-terminal",
     "uieditorpath": "/root/example/",
     "uisettings": "text",
-    "showdashboard": true,
-    "dashboards": [{"name": "Display 80", "port": 80}]
+    "showdashboard": false,
+    "dashboards": [
+      {"name": "Display 80", "port": 80},
+      {"name": "Display 81", "port": 81}
+    ]
   },
   "backend": {
     "imageid": "ubuntu"

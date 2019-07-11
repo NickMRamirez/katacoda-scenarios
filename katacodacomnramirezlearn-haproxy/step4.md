@@ -15,6 +15,6 @@ You may be curious about the label *www* on the `listen` line. Each `listen` mus
 
 ## Try it out
 
-Click the **Display 80** tab to see it in action. 
+Click here to [view the site on port 80](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/).
 
 This makes a request to HAProxy at port 80. HAProxy then relays the request to a backend server that is listening at port 8000, which returns a response to HAProxy. HAProxy then returns it to the client (the browser).
