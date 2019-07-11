@@ -42,7 +42,7 @@ cd /root/example
 docker-compose restart haproxy
 ```{{execute}}
 
-Make a few requests to the [website](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/).
+Make a four or five requests to the [website](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/).
 
 Check the logs:
 
