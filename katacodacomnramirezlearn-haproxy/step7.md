@@ -84,5 +84,5 @@ docker-compose restart haproxy
 
 You can then access the site on either port 80 or 81:
 
-* Click here to [view the site on port 80](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/).
-* Click here to [view the site on port 81](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/).
+* Click here to [view the site on port 80](https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/)
+* Click here to [view the site on port 81](https://[[HOST_SUBDOMAIN]]-81-[[KATACODA_HOST]].environments.katacoda.com/)

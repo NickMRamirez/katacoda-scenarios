@@ -19,6 +19,7 @@ services:
     - "./haproxy.cfg:/etc/haproxy/haproxy.cfg"
     ports:
     - "80:80"
+    - "81:81"
     - "9000:9000"
     depends_on:
     - web1
