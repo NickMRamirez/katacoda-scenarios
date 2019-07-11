@@ -17,7 +17,7 @@ You can view the HAProxy logs by entering the following command into the termina
 ```
 cd /root/example
 docker-compose logs haproxy
-```
+```{{execute}}
 
 Try it out. You should see the initial log message: *Proxy www started*.
 
