@@ -38,6 +38,10 @@
       {
         "title": "Advanced routing",
         "text": "step6.md"
+      },
+      {
+        "title": "The bind directive",
+        "text": "step7.md"
       }
     ],
     "finish": {

@@ -1,6 +1,8 @@
 Splitting your configuration up into `frontend` and `backend` sections is advantageous when you want to introduce more complex routing behavior. In our current example, the `frontend` relays all traffic to the `backend` with the name *webservers* by looking at the `default_backend` directive. If such a `backend` isn't found, HAProxy will fail to load the new configuration and give an error such as:
 
+```
 Proxy 'www': unable to find required default_backend: 'webservers'.
+```
 
 Let's introduce some more advanced routing logic.
 
