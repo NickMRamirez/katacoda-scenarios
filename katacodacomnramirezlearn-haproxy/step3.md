@@ -8,8 +8,6 @@ In the *haproxy.cfg* file, the `global` section sets process-level instructions 
 | `ssl-default-bind-ciphers` | Lists SSL and TLS ciphers to use by default.                                                                                                 |
 | `ssl-default-bind-options` | Lists SSL and TLS options, such as `ssl-min-ver` to disable support for older protocols.                                                     |
 
-For this tutorial, HAProxy is running inside of a Docker container. The `log` directive sends messages to standard output.
-
 ## Try it out
 
 The `log` directive in the `global` section tells HAProxy where to send its log messages. In this case, it sends them to *standard output*. Since HAProxy is running inside of a Docker container, you can view the logs by entering the following command into the terminal window:
@@ -19,9 +17,9 @@ cd /root/example
 docker-compose logs haproxy
 ```{{execute}}
 
-You should see the initial log message: *Proxy www started*.
+You should see the startup log message: *Proxy www started*.
 
-You can also access the HAProxy Runtime API, which is set to listen on port 9000. The docker container exposes that port, so use the following command to see information about the running HAProxy process:
+The `stats socket` directive enables the HAProxy Runtime API on port 9000. The docker container exposes that port, so you can send the *show info* API command to see information about the running HAProxy process:
 
 ```
 echo "show info" | nc localhost 9000
